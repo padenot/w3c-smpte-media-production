@@ -107,6 +107,8 @@ dd {
 
   # Memory access patterns in Web Codecs
 
+  ### Current state and future developments
+
   Paul Adenot
 
   <span class="big logo">mozilla</span>
@@ -123,9 +125,9 @@ dd {
 
   # Some numbers for a frame
 
-  - YUV420 Full HD video frame SDR: 1920 * 1980 * 2 ≈ 4MB
-  - YUV420 Utra HD 4k video frame SDR: 3840 * 2160 * 2 ≈ 16MB
-  - P010 (≈YUV420 10-bits) Utra HD 4k video frame HDR: 3840 * 2160 * 4 ≈ 32MB
+  - YUV420 1080p video frame SDR:<br> 1920 \* 1980 \* 2 ≈ **4MB**
+  - YUV420 4k video frame SDR:<br> 3840 \* 2160 \* 2 ≈ **16MB**
+  - P010 (≈YUV420 10-bits) 4k video frame HDR:<br> 3840 \* 2160 \* 4 ≈ **32MB**
 
   ---
 
@@ -134,13 +136,13 @@ dd {
   AVX512 `memcpy` + DDR4 + optimized C++ = close to best case
 
   - Hot caches
-    - YUV420 Full HD video frame SDR ≈ 1.5ms
-    - YUV420 UHD 4k video frame SDR ≈ 6.6ms
-    - P010 UHD 4k 10-bits video frame HDR ≈ 15ms
+    - YUV420 1080p video frame SDR ≈ 1.5ms
+    - YUV420 4k video frame SDR ≈ 6.6ms
+    - P010 4k 10-bits video frame HDR ≈ 15ms
   - Cold caches
-    - YUV420 Full HD video frame SDR ≈ 4.5ms
-    - YUV420 UHD 4k video frame SDR ≈ 17ms
-    - P010 UHD 4k 10-bits video frame HDR ≈ 33ms
+    - YUV420 1080p video frame SDR ≈ 4.5ms
+    - YUV420 4k video frame SDR ≈ 17ms
+    - P010 4k 10-bits video frame HDR ≈ 33ms
 
   ---
 
@@ -171,7 +173,7 @@ dd {
 
   # Necessary copies part 1 - easy fixes
 
-  - `decode`/`encode` input: data is copied ([WebCodecs issue #104](https://github.com/w3c/webcodecs/issues/104))
+  - `decode` input: data is copied ([WebCodecs issue #104](https://github.com/w3c/webcodecs/issues/104))
   - `VideoFrame` and `AudioData` `copyTo`: no way to "steal" the underlying
       memory yet ([WebCodecs issue #287](https://github.com/w3c/webcodecs/issues/287))
   - memory cycling / allocator pressure ([WebCodecs issue #212](https://github.com/w3c/webcodecs/issues/212))
